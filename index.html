@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajith Kumar | 3D Portfolio</title>
+  <meta name="description" content="Self-contained 3D portfolio website for Rajith Kumar, Insurance and Finance Advisor.">
+  <style>
+    :root {
+      --bg-0: #07110f;
+      --bg-1: #0b1b18;
+      --bg-2: #102926;
+      --glass: rgba(13, 32, 28, 0.68);
+      --glass-strong: rgba(17, 38, 33, 0.88);
+      --line: rgba(209, 247, 218, 0.12);
+      --text: #eef7f1;
+      --muted: #b8cec1;
+      --accent: #8df2b4;
+      --accent-2: #f6d892;
+      --accent-3: #2db97f;
+      --shadow-xl: 0 35px 120px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.32);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(69, 153, 106, 0.18), transparent 26%),
+        radial-gradient(circle at 85% 16%, rgba(246, 216, 146, 0.12), transparent 22%),
+        radial-gradient(circle at 50% 120%, rgba(45, 185, 127, 0.12), transparent 35%),
+        linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, #0e1d19);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      position: relative;
+      width: min(1220px, calc(100% - 28px));
+      margin: 14px auto;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      background:
+        linear-gradient(180deg, rgba(9, 23, 20, 0.92), rgba(11, 28, 24, 0.88)),
+        radial-gradient(circle at top right, rgba(141, 242, 180, 0.05), transparent 30%);
+      box-shadow: var(--shadow-xl);
+      isolation: isolate;
+    }
+
+    .orb,
+    .grid-haze {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      border-radius: 999px;
+      filter: blur(28px);
+      opacity: 0.6;
+    }
+
+    .orb-a {
+      top: -100px;
+      right: -80px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(141, 242, 180, 0.6), transparent 65%);
+    }
+
+    .orb-b {
+      left: -70px;
+      bottom: 40px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(246, 216, 146, 0.32), transparent 65%);
+    }
+
+    .grid-haze {
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 78%);
+    }
+
+    header,
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 42px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #154638, #0d201b);
+      border: 1px solid rgba(246, 216, 146, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      display: grid;
+      place-items: center;
+      color: var(--accent-2);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 11px 15px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      transition: transform 180ms ease, color 180ms ease, border-color 180ms ease;
+    }
+
+    .nav a:hover {
+      transform: translateY(-2px);
+      color: var(--text);
+      border-color: rgba(141, 242, 180, 0.26);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.77rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 34px;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .hero-copy h1,
+    .section-head h2,
+    .quote-card blockquote,
+    .brand-card h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .hero-copy h1 {
+      max-width: 9ch;
+      font-size: clamp(3rem, 5vw, 5.7rem);
+      text-wrap: balance;
+    }
+
+    .hero-copy p.hero-text {
+      max-width: 58ch;
+      margin: 22px 0 26px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1.02rem;
+    }
+
+    .hero-actions,
+    .tag-row,
+    .brand-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #062117;
+      background: linear-gradient(135deg, var(--accent), #e8ffdc);
+      box-shadow: 0 14px 26px rgba(141, 242, 180, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tag-row {
+      margin-top: 22px;
+    }
+
+    .tag-row span,
+    .brand-pills span,
+    .float-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-stage {
+      position: relative;
+      min-height: 610px;
+      perspective: 1600px;
+      perspective-origin: 50% 42%;
+    }
+
+    .depth-card {
+      --base-transform: none;
+      --tilt-x: 0deg;
+      --tilt-y: 0deg;
+      --lift: 0px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: var(--base-transform) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(var(--lift));
+      transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+    }
+
+    .depth-card:hover {
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-tower {
+      --base-transform: rotateY(-18deg) rotateX(9deg);
+      position: absolute;
+      inset: 20px 36px 56px 20px;
+    }
+
+    .tower-layer {
+      position: absolute;
+      inset: 0;
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+      transform-style: preserve-3d;
+    }
+
+    .tower-shadow {
+      inset: 38px 16px -10px 62px;
+      background: linear-gradient(180deg, rgba(5, 10, 9, 0.2), rgba(5, 10, 9, 0.65));
+      transform: translateZ(-90px) translateX(22px) translateY(34px);
+      filter: blur(8px);
+      border: 0;
+      box-shadow: none;
+    }
+
+    .tower-back {
+      background: linear-gradient(180deg, rgba(20, 55, 46, 0.86), rgba(8, 18, 16, 0.95));
+      transform: translateZ(-52px) translateX(28px) translateY(24px);
+    }
+
+    .tower-mid {
+      background: linear-gradient(145deg, rgba(27, 82, 64, 0.95), rgba(10, 28, 23, 0.98));
+      transform: translateZ(-22px) translateX(10px) translateY(10px);
+    }
+
+    .tower-front {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(246, 216, 146, 0.12), transparent 20%),
+        linear-gradient(180deg, rgba(19, 44, 38, 0.95), rgba(9, 20, 18, 0.98));
+      padding: 22px;
+      transform: translateZ(24px);
+    }
+
+    .hero-scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(12, 42, 35, 0.94), rgba(8, 18, 16, 0.98)),
+        radial-gradient(circle at 40% 10%, rgba(141, 242, 180, 0.15), transparent 22%);
+    }
+
+    .hero-scene svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .float-pill {
+      position: absolute;
+      z-index: 2;
+      color: var(--text);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .pill-a {
+      top: 20px;
+      left: 18px;
+      transform: translateZ(90px);
+    }
+
+    .pill-b {
+      right: -24px;
+      top: 150px;
+      transform: translateZ(120px);
+    }
+
+    .pill-c {
+      left: 70px;
+      bottom: 26px;
+      transform: translateZ(110px);
+    }
+
+    .info-card,
+    .metric-card {
+      position: absolute;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(19, 41, 35, 0.86), rgba(11, 24, 21, 0.94));
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px);
+      padding: 18px;
+    }
+
+    .info-card {
+      --base-transform: rotateY(16deg) rotateX(-5deg);
+      top: 10px;
+      right: 8px;
+      width: 278px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .seal {
+      width: 60px;
+      height: 60px;
+      flex: 0 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #153d31, #0c201b);
+      border: 1px solid rgba(246, 216, 146, 0.18);
+    }
+
+    .seal svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .info-card p,
+    .info-card span,
+    .metric-card span,
+    .metric-card p,
+    .contact-box p {
+      margin: 0;
+    }
+
+    .info-card p {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .info-card span,
+    .metric-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .metric-card {
+      --base-transform: rotateY(-12deg) rotateX(5deg);
+      right: 52px;
+      bottom: 12px;
+      width: 210px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .metric-card strong {
+      font-size: 1.7rem;
+      color: var(--accent-2);
+    }
+
+    .stats-grid,
+    .service-grid,
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin: 10px 0 58px;
+    }
+
+    .panel,
+    .service-card,
+    .quote-card,
+    .brand-card,
+    .contact-box {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(18, 39, 34, 0.84), rgba(10, 24, 21, 0.96));
+      box-shadow: var(--shadow-lg);
+      padding: 24px;
+    }
+
+    .panel .value {
+      display: block;
+      margin-bottom: 8px;
+      font-size: clamp(2rem, 3vw, 3.1rem);
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .panel p,
+    .service-card p,
+    .quote-note,
+    .brand-card p,
+    .contact-box p {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .service-section,
+    .quote-section,
+    .contact-section {
+      margin-bottom: 58px;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2,
+    .brand-card h2 {
+      font-size: clamp(2rem, 3vw, 3.15rem);
+    }
+
+    .service-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-card {
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(141, 242, 180, 0.08), transparent 44%);
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      color: #072218;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #e7ffdd);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.46);
+    }
+
+    .service-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.24rem;
+    }
+
+    .quote-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .quote-card blockquote {
+      margin-bottom: 18px;
+      font-size: clamp(1.75rem, 2.5vw, 2.55rem);
+      line-height: 1.24;
+    }
+
+    .brand-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-card::after {
+      content: "";
+      position: absolute;
+      right: -50px;
+      bottom: -60px;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(141, 242, 180, 0.12), transparent 68%);
+    }
+
+    .contact-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contact-box {
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-label {
+      margin: 0;
+      font-size: 0.77rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .contact-box a,
+    .contact-box p {
+      font-size: 1.05rem;
+      word-break: break-word;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .stats-grid,
+      .service-grid,
+      .quote-wrap,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stage {
+        min-height: 560px;
+      }
+
+      .hero-tower,
+      .info-card,
+      .metric-card {
+        --base-transform: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        width: min(100% - 18px, 100%);
+        padding: 20px;
+        border-radius: 28px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-copy h1 {
+        max-width: none;
+      }
+
+      .hero-stage {
+        min-height: 480px;
+      }
+
+      .hero-tower {
+        inset: 0 0 20px;
+      }
+
+      .float-pill {
+        position: static;
+        display: inline-flex;
+        margin: 10px 10px 0 0;
+      }
+
+      .info-card,
+      .metric-card {
+        position: static;
+        width: auto;
+        margin-top: 14px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .depth-card,
+      .btn,
+      .nav a {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="grid-haze"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#home">
+        <span class="brand-badge">RK</span>
+        <span>Rajith Kumar</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Insurance and Finance Advisor</p>
+          <h1>A self-contained portfolio with a strong 3D stage.</h1>
+          <p class="hero-text">
+            Rajith Kumar helps individuals and families build practical financial protection through life insurance,
+            health coverage, retirement planning, and child or wealth plans. This page is fully self-contained in one
+            file, with the visuals and interactions embedded directly into the document.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:9446322079">Call 9446322079</a>
+            <a class="btn btn-secondary" href="mailto:rajithsbt@gmail.com">Email Rajith</a>
+          </div>
+
+          <div class="tag-row">
+            <span>Kerala, India</span>
+            <span>LIC Representation</span>
+            <span>Client-first guidance</span>
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div class="hero-tower depth-card" data-tilt>
+            <div class="tower-layer tower-shadow"></div>
+            <div class="tower-layer tower-back"></div>
+            <div class="tower-layer tower-mid"></div>
+            <div class="tower-layer tower-front">
+              <div class="hero-scene">
+                <svg viewBox="0 0 900 620" aria-label="3D insurance and finance scene" role="img">
+                  <defs>
+                    <linearGradient id="sceneBg" x1="110" y1="60" x2="780" y2="570" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#13392f"/>
+                      <stop offset="1" stop-color="#081411"/>
+                    </linearGradient>
+                    <linearGradient id="platformTop" x1="160" y1="330" x2="670" y2="550" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#195141"/>
+                      <stop offset="1" stop-color="#0b241d"/>
+                    </linearGradient>
+                    <linearGradient id="platformSide" x1="450" y1="320" x2="670" y2="520" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#24b57b"/>
+                      <stop offset="1" stop-color="#10704d"/>
+                    </linearGradient>
+                    <linearGradient id="panelFace" x1="302" y1="168" x2="628" y2="368" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#1fb177"/>
+                      <stop offset="1" stop-color="#11734f"/>
+                    </linearGradient>
+                    <linearGradient id="shieldFace" x1="530" y1="180" x2="688" y2="370" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#f9e6ac"/>
+                      <stop offset="1" stop-color="#ddb45a"/>
+                    </linearGradient>
+                    <linearGradient id="plusCube" x1="192" y1="254" x2="310" y2="392" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#1a9667"/>
+                      <stop offset="1" stop-color="#0b3025"/>
+                    </linearGradient>
+                  </defs>
+
+                  <rect width="900" height="620" fill="url(#sceneBg)"/>
+                  <circle cx="740" cy="98" r="58" fill="#8DF2B4" fill-opacity="0.16"/>
+                  <circle cx="220" cy="124" r="46" fill="#F6D892" fill-opacity="0.2"/>
+                  <ellipse cx="455" cy="486" rx="274" ry="68" fill="#040A09" fill-opacity="0.58"/>
+
+                  <path d="M180 430L444 318L706 434L434 554L180 430Z" fill="url(#platformTop)"/>
+                  <path d="M444 318V406L706 522V434L444 318Z" fill="url(#platformSide)"/>
+                  <path d="M180 430V500L434 620V554L180 430Z" fill="#0b1a16"/>
+
+                  <g transform="translate(0 -8)">
+                    <rect x="306" y="170" width="304" height="194" rx="30" fill="url(#panelFace)"/>
+                    <rect x="330" y="194" width="256" height="148" rx="20" fill="#EEF7F1"/>
+                    <rect x="356" y="220" width="94" height="16" rx="8" fill="#D4EAD8"/>
+                    <rect x="356" y="254" width="188" height="16" rx="8" fill="#D4EAD8"/>
+                    <rect x="356" y="286" width="144" height="16" rx="8" fill="#D4EAD8"/>
+                    <path d="M392 350L448 306L510 334L556 276" stroke="#16A46D" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="392" cy="350" r="14" fill="#F6D892"/>
+                    <circle cx="448" cy="306" r="14" fill="#F6D892"/>
+                    <circle cx="510" cy="334" r="14" fill="#F6D892"/>
+                    <circle cx="556" cy="276" r="14" fill="#F6D892"/>
+                  </g>
+
+                  <g transform="translate(28 10)">
+                    <path d="M574 175L650 224V319L574 367L498 319V224L574 175Z" fill="url(#shieldFace)"/>
+                    <path d="M575 217L611 238V278C611 299.5 596.333 318.333 575 331C553.667 318.333 539 299.5 539 278V238L575 217Z" fill="#EEF7F1"/>
+                    <path d="M560 275L571 286L592 261" stroke="#16A46D" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+
+                  <g transform="translate(-10 0)">
+                    <path d="M246 260L304 294V360L246 394L188 360V294L246 260Z" fill="url(#plusCube)"/>
+                    <path d="M220 354H272" stroke="#EEF7F1" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M246 328V380" stroke="#EEF7F1" stroke-width="10" stroke-linecap="round"/>
+                  </g>
+
+                  <g opacity="0.7">
+                    <path d="M344 460L430 424L516 462L430 500L344 460Z" fill="#F6D892"/>
+                    <path d="M430 424V460L516 498V462L430 424Z" fill="#D1A64D"/>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="float-pill pill-a">Family Security</div>
+              <div class="float-pill pill-b">Retirement Planning</div>
+              <div class="float-pill pill-c">Health Cover</div>
+            </div>
+          </div>
+
+          <div class="info-card depth-card" data-tilt>
+            <div class="seal" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="sealBg" x1="12" y1="8" x2="88" y2="92" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0f4738"/>
+                    <stop offset="1" stop-color="#08211a"/>
+                  </linearGradient>
+                  <radialGradient id="sealGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(44 36) rotate(55) scale(56)">
+                    <stop stop-color="#1aa972"/>
+                    <stop offset="1" stop-color="#0a1e17"/>
+                  </radialGradient>
+                </defs>
+                <rect width="100" height="100" rx="24" fill="url(#sealBg)"/>
+                <circle cx="50" cy="50" r="38" fill="url(#sealGlow)" stroke="rgba(255,255,255,0.24)"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#F6D892" stroke-opacity="0.42"/>
+                <text x="50" y="58" text-anchor="middle" fill="#EEF7F1" font-size="24" font-family="Georgia, serif" font-weight="700">RK</text>
+              </svg>
+            </div>
+            <div>
+              <p>Rajith Kumar</p>
+              <span>Insurance and Finance Advisor focused on practical long-term planning.</span>
+            </div>
+          </div>
+
+          <div class="metric-card depth-card" data-tilt>
+            <strong>1.78 Cr</strong>
+            <span>Policies issued through LIC, presented as a high-visibility portfolio metric.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="panel depth-card" data-tilt>
+          <span class="value" data-count="69">0</span>
+          <p>Years of LIC trust</p>
+        </article>
+        <article class="panel depth-card" data-tilt>
+          <span class="value" data-count="65">0</span>
+          <p>Policy market share</p>
+        </article>
+        <article class="panel depth-card" data-tilt>
+          <span class="value">1.78 Cr</span>
+          <p>Policies issued</p>
+        </article>
+      </section>
+
+      <section class="service-section" id="services">
+        <div class="section-head">
+          <p class="eyebrow">Services</p>
+          <h2>Focused support at every stage of life.</h2>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card depth-card" data-tilt>
+            <div class="service-icon">01</div>
+            <h3>Life Insurance</h3>
+            <p>Protection plans designed to keep families secure when life changes unexpectedly.</p>
+          </article>
+
+          <article class="service-card depth-card" data-tilt>
+            <div class="service-icon">02</div>
+            <h3>Health Insurance</h3>
+            <p>Coverage choices shaped around medical needs, affordability, and different life stages.</p>
+          </article>
+
+          <article class="service-card depth-card" data-tilt>
+            <div class="service-icon">03</div>
+            <h3>Pension and Retirement</h3>
+            <p>Future-income planning that supports stability, comfort, and confidence after working years.</p>
+          </article>
+
+          <article class="service-card depth-card" data-tilt>
+            <div class="service-icon">04</div>
+            <h3>Child and Wealth Plans</h3>
+            <p>Structured planning for education, marriage, and long-term wealth creation goals.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="quote-section" id="approach">
+        <div class="quote-wrap">
+          <article class="quote-card depth-card" data-tilt>
+            <p class="eyebrow">Approach</p>
+            <blockquote>
+              It is not about how much you earn. It is about how wisely you protect and grow what you have.
+            </blockquote>
+            <p class="quote-note">
+              Rajith works closely with clients to understand retirement plans, education goals, protection needs,
+              and family priorities before suggesting any policy direction.
+            </p>
+          </article>
+
+          <article class="brand-card depth-card" data-tilt>
+            <p class="eyebrow">Brand Represented</p>
+            <h2>LIC of India</h2>
+            <p>
+              A trusted insurance brand, represented here with a sharper digital presentation that highlights
+              Rajith’s advisory identity rather than relying on a plain resume layout.
+            </p>
+            <div class="brand-pills">
+              <span>Trusted planning</span>
+              <span>Client education</span>
+              <span>Long-term value</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="section-head">
+          <p class="eyebrow">Contact</p>
+          <h2>Ready for a consultation or policy discussion.</h2>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-box depth-card" data-tilt>
+            <p class="contact-label">Phone</p>
+            <a href="tel:9446322079">9446322079</a>
+          </article>
+
+          <article class="contact-box depth-card" data-tilt>
+            <p class="contact-label">Email</p>
+            <a href="mailto:rajithsbt@gmail.com">rajithsbt@gmail.com</a>
+          </article>
+
+          <article class="contact-box depth-card" data-tilt>
+            <p class="contact-label">Location</p>
+            <p>Kerala, India</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll("[data-tilt]");
+
+    cards.forEach((card) => {
+      const strength = card.classList.contains("hero-tower") ? 11 : 9;
+
+      card.addEventListener("mousemove", (event) => {
+        if (window.innerWidth < 721 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          return;
+        }
+
+        const bounds = card.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+        const rotateY = x * strength;
+        const rotateX = -y * strength;
+
+        card.style.setProperty("--tilt-x", rotateX.toFixed(2) + "deg");
+        card.style.setProperty("--tilt-y", rotateY.toFixed(2) + "deg");
+        card.style.setProperty("--lift", "-5px");
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.setProperty("--tilt-x", "0deg");
+        card.style.setProperty("--tilt-y", "0deg");
+        card.style.setProperty("--lift", "0px");
+      });
+    });
+
+    const counters = document.querySelectorAll(".value[data-count]");
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const element = entry.target;
+        const target = Number(element.dataset.count);
+        const suffix = target === 65 ? "%" : "+";
+        const start = performance.now();
+        const duration = 1200;
+
+        const animate = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          element.textContent = Math.floor(target * eased) + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+
+        requestAnimationFrame(animate);
+        counterObserver.unobserve(element);
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach((counter) => counterObserver.observe(counter));
+  </script>
+</body>
+</html>
