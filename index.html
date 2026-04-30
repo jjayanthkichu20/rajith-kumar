@@ -561,6 +561,11 @@
       gap: 8px;
     }
 
+    .contact-box.whatsapp-box {
+      background: linear-gradient(180deg, rgba(20, 59, 40, 0.92), rgba(10, 24, 18, 0.98));
+      border-color: rgba(141, 242, 180, 0.22);
+    }
+
     .contact-label {
       margin: 0;
       font-size: 0.77rem;
@@ -684,6 +689,7 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="tel:9446322079">Call 9446322079</a>
             <a class="btn btn-secondary" href="mailto:rajithsbt@gmail.com">Email Rajith</a>
+            <a class="btn btn-secondary" href="https://wa.me/919446322079?text=Hello%20Rajith%20Kumar%2C%20I%20would%20like%20more%20details%20about%20your%20insurance%20and%20financial%20planning%20services." target="_blank" rel="noopener noreferrer">WhatsApp Rajith</a>
           </div>
 
           <div class="tag-row">
@@ -905,6 +911,12 @@
             <p class="contact-label">Location</p>
             <p>Kerala, India</p>
           </article>
+
+          <article class="contact-box whatsapp-box depth-card" data-tilt>
+            <p class="contact-label">WhatsApp</p>
+            <a href="https://wa.me/919446322079?text=Hello%20Rajith%20Kumar%2C%20I%20would%20like%20more%20details%20about%20your%20insurance%20and%20financial%20planning%20services." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            <p>Message directly for more details and consultation.</p>
+          </article>
         </div>
       </section>
     </main>
@@ -912,7 +924,7 @@
 
   <script>
     (function forceFreshBuild() {
-      const buildVersion = "2026-04-30-1";
+      const buildVersion = "2026-04-30-2";
       const url = new URL(window.location.href);
 
       if (url.searchParams.get("v") !== buildVersion) {
