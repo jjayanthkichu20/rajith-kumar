@@ -468,6 +468,14 @@
       opacity: 0.8;
     }
 
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+    }
+
     .photo-card p,
     .photo-card span {
       margin: 0;
@@ -889,16 +897,10 @@
 
           <div class="photo-card depth-card" data-tilt>
             <div class="photo-slot">
-              <div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4"></circle>
-                  <path d="M4 20c1.8-3.6 5-5.4 8-5.4s6.2 1.8 8 5.4"></path>
-                </svg>
-                <div>Photo Space</div>
-              </div>
+              <img src="assets/client-photo.jpeg" alt="Rajith Kumar client photo">
             </div>
-            <p>Reserved Image Area</p>
-            <span>Add your client or profile photo here later.</span>
+            <p>Client Photo</p>
+            <span>Direct profile image for Rajith Kumar.</span>
           </div>
         </div>
       </section>
@@ -1023,7 +1025,7 @@
 
   <script>
     (function forceFreshBuild() {
-      const buildVersion = "2026-04-30-4";
+      const buildVersion = "2026-04-30-5";
       const url = new URL(window.location.href);
 
       if (url.searchParams.get("v") !== buildVersion) {
