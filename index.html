@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rajith Kumar | 3D Portfolio</title>
   <meta name="description" content="Self-contained 3D portfolio website for Rajith Kumar, Insurance and Finance Advisor.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <style>
     :root {
       --bg-0: #07110f;
@@ -908,6 +911,16 @@
   </div>
 
   <script>
+    (function forceFreshBuild() {
+      const buildVersion = "2026-04-30-1";
+      const url = new URL(window.location.href);
+
+      if (url.searchParams.get("v") !== buildVersion) {
+        url.searchParams.set("v", buildVersion);
+        window.location.replace(url.toString());
+      }
+    }());
+
     const cards = document.querySelectorAll("[data-tilt]");
 
     cards.forEach((card) => {
