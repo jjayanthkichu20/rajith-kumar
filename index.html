@@ -432,6 +432,60 @@
       color: var(--accent-2);
     }
 
+    .photo-card {
+      --base-transform: rotateY(12deg) rotateX(-4deg);
+      position: absolute;
+      left: 8px;
+      bottom: 24px;
+      width: 200px;
+      border-radius: 26px;
+      border: 1px solid rgba(141, 242, 180, 0.18);
+      background: linear-gradient(180deg, rgba(20, 46, 38, 0.9), rgba(9, 22, 19, 0.96));
+      box-shadow: var(--shadow-lg);
+      padding: 16px;
+      backdrop-filter: blur(16px);
+    }
+
+    .photo-slot {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 20px;
+      border: 1.5px dashed rgba(141, 242, 180, 0.32);
+      background:
+        radial-gradient(circle at top, rgba(141, 242, 180, 0.08), transparent 45%),
+        rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      text-align: center;
+      padding: 14px;
+    }
+
+    .photo-slot svg {
+      width: 58px;
+      height: 58px;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    .photo-card p,
+    .photo-card span {
+      margin: 0;
+    }
+
+    .photo-card p {
+      margin-top: 12px;
+      font-weight: 700;
+    }
+
+    .photo-card span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
     .stats-grid,
     .service-grid,
     .contact-grid {
@@ -700,7 +754,7 @@
       <section class="hero" id="home">
         <div class="hero-copy">
           <p class="eyebrow">Insurance and Finance Advisor</p>
-          <h1>A self-contained portfolio with a strong 3D stage.</h1>
+          <h1>Rajith Kumar</h1>
           <p class="hero-text">
             Rajith Kumar helps individuals and families build practical financial protection through life insurance,
             health coverage, retirement planning, and child or wealth plans. This page is fully self-contained in one
@@ -832,6 +886,20 @@
             <strong>1.78 Cr</strong>
             <span>Policies issued through LIC, presented as a high-visibility portfolio metric.</span>
           </div>
+
+          <div class="photo-card depth-card" data-tilt>
+            <div class="photo-slot">
+              <div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4"></circle>
+                  <path d="M4 20c1.8-3.6 5-5.4 8-5.4s6.2 1.8 8 5.4"></path>
+                </svg>
+                <div>Photo Space</div>
+              </div>
+            </div>
+            <p>Reserved Image Area</p>
+            <span>Add your client or profile photo here later.</span>
+          </div>
         </div>
       </section>
 
@@ -955,7 +1023,7 @@
 
   <script>
     (function forceFreshBuild() {
-      const buildVersion = "2026-04-30-3";
+      const buildVersion = "2026-04-30-4";
       const url = new URL(window.location.href);
 
       if (url.searchParams.get("v") !== buildVersion) {
