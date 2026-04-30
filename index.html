@@ -524,6 +524,27 @@
       font-size: 1.24rem;
     }
 
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: rgba(141, 242, 180, 0.1);
+      border: 1px solid rgba(141, 242, 180, 0.22);
+      color: var(--text);
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .service-link:hover {
+      transform: translateY(-2px);
+      background: rgba(141, 242, 180, 0.16);
+      border-color: rgba(141, 242, 180, 0.34);
+    }
+
     .quote-wrap {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -689,13 +710,14 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="tel:9446322079">Call 9446322079</a>
             <a class="btn btn-secondary" href="mailto:rajithsbt@gmail.com">Email Rajith</a>
-            <a class="btn btn-secondary" href="https://wa.me/919446322079?text=Hello%20Rajith%20Kumar%2C%20I%20would%20like%20more%20details%20about%20your%20insurance%20and%20financial%20planning%20services." target="_blank" rel="noopener noreferrer">WhatsApp Rajith</a>
+            <a class="btn btn-secondary" href="https://wa.me/919446322079?text=Hello%20Rajith%20Kumar%2C%20I%20would%20like%20more%20details%20about%20your%20LIC%20plans.%20Agency%20Code%3A%2003362807." target="_blank" rel="noopener noreferrer">WhatsApp Rajith</a>
           </div>
 
           <div class="tag-row">
             <span>Kerala, India</span>
             <span>LIC Representation</span>
             <span>Client-first guidance</span>
+            <span>Agency Code: 03362807</span>
           </div>
         </div>
 
@@ -839,24 +861,28 @@
             <div class="service-icon">01</div>
             <h3>Life Insurance</h3>
             <p>Protection plans designed to keep families secure when life changes unexpectedly.</p>
+            <a class="service-link" href="https://www.licindia.in/insurance-plan" target="_blank" rel="noopener noreferrer">View LIC Life Insurance</a>
           </article>
 
           <article class="service-card depth-card" data-tilt>
             <div class="service-icon">02</div>
             <h3>Health Insurance</h3>
             <p>Coverage choices shaped around medical needs, affordability, and different life stages.</p>
+            <a class="service-link" href="https://www.licindia.in/web/guest/health-insurance" target="_blank" rel="noopener noreferrer">View LIC Health Insurance</a>
           </article>
 
           <article class="service-card depth-card" data-tilt>
             <div class="service-icon">03</div>
             <h3>Pension and Retirement</h3>
             <p>Future-income planning that supports stability, comfort, and confidence after working years.</p>
+            <a class="service-link" href="https://licindia.in/en/web/guest/pension-plan" target="_blank" rel="noopener noreferrer">View LIC Pension Plans</a>
           </article>
 
           <article class="service-card depth-card" data-tilt>
             <div class="service-icon">04</div>
             <h3>Child and Wealth Plans</h3>
             <p>Structured planning for education, marriage, and long-term wealth creation goals.</p>
+            <a class="service-link" href="https://licindia.in/plans-for-children-s-future" target="_blank" rel="noopener noreferrer">View LIC Child Plans</a>
           </article>
         </div>
       </section>
@@ -912,10 +938,15 @@
             <p>Kerala, India</p>
           </article>
 
+          <article class="contact-box depth-card" data-tilt>
+            <p class="contact-label">Agency Code</p>
+            <p>03362807</p>
+          </article>
+
           <article class="contact-box whatsapp-box depth-card" data-tilt>
             <p class="contact-label">WhatsApp</p>
-            <a href="https://wa.me/919446322079?text=Hello%20Rajith%20Kumar%2C%20I%20would%20like%20more%20details%20about%20your%20insurance%20and%20financial%20planning%20services." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-            <p>Message directly for more details and consultation.</p>
+            <a href="https://wa.me/919446322079?text=Hello%20Rajith%20Kumar%2C%20I%20would%20like%20more%20details%20about%20your%20LIC%20plans.%20Agency%20Code%3A%2003362807." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            <p>Message directly for more details and mention agency code 03362807.</p>
           </article>
         </div>
       </section>
@@ -924,7 +955,7 @@
 
   <script>
     (function forceFreshBuild() {
-      const buildVersion = "2026-04-30-2";
+      const buildVersion = "2026-04-30-3";
       const url = new URL(window.location.href);
 
       if (url.searchParams.get("v") !== buildVersion) {
